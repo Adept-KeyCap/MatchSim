@@ -7,11 +7,14 @@ using System;
 using Firebase.Extensions;
 using TMPro;
 using System.Linq;
+using UnityEngine.Events;
 
 public class ChangePanelWhenUserAuthenticated : MonoBehaviour
 {
     public GameObject LogInPanel;
     public GameObject GamePanel;
+
+    public UnityEvent whenAutenticated;
     //public GameObject panelLeaderboardPrefab;
     //public GameObject canvasTransform;
     //[SerializeField] private TextMeshProUGUI[] userData;
@@ -35,6 +38,8 @@ public class ChangePanelWhenUserAuthenticated : MonoBehaviour
         {
             GamePanel.SetActive(true);
             LogInPanel.SetActive(false);
+
+            whenAutenticated.Invoke();
         }
     }
     //public void GetHighScore()
