@@ -9,18 +9,19 @@ public class OnlineState : MonoBehaviour
 {
     // Start is called before the first frame update
     public string currentUserId;
-    void Start()
+    public void RetriveOnlineStatus()
     {
-        currentUserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-        SetOnlineStatus(true);
+        StartCoroutine(waitCheck());
     }
+
     private void OnApplicationQuit()
     {
         SetOnlineStatus(false);
     }
+
     private void OnApplicationPause(bool pauseStatus)
     {
-        SetOnlineStatus(!pauseStatus);
+        //SetOnlineStatus(!pauseStatus);
     }
 
     private void OnDestroy()
@@ -51,4 +52,11 @@ public class OnlineState : MonoBehaviour
         } 
     }
     
+    private IEnumerator waitCheck()
+    {
+        currentUserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        yield return new WaitForSeconds(5);
+        SetOnlineStatus(true);
+    }
+
 }

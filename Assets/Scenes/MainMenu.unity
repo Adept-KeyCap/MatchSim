@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 179692913}
   - component: {fileID: 179692915}
   - component: {fileID: 179692916}
+  - component: {fileID: 179692917}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1337,6 +1338,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 347903612}
   friendItemPrefab: {fileID: 6336173073205354770, guid: 5db4db4b03f2fe94ba80faee870abf62, type: 3}
+--- !u!114 &179692917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179692911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56563164807132746ad715c6ced2d6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentUserId: 
 --- !u!1 &187230213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6686,6 +6700,18 @@ MonoBehaviour:
       - m_Target: {fileID: 179692915}
         m_TargetAssemblyTypeName: FriendRequestManager, Assembly-CSharp
         m_MethodName: RetrieveUserInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 179692917}
+        m_TargetAssemblyTypeName: OnlineState, Assembly-CSharp
+        m_MethodName: RetriveOnlineStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
