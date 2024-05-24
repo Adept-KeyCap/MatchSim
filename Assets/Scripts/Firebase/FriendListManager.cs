@@ -23,7 +23,7 @@ public class FriendListManager : MonoBehaviour
 
     private string notificationID;
 
-    public void OnEnable()
+    public void RetriveFirendsInfo()
     {
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         currentUserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
@@ -84,19 +84,5 @@ public class FriendListManager : MonoBehaviour
         {
             friendItems[i].transform.SetSiblingIndex(i);
         }
-    }
-
-    private void ShowOnlineNotification(string username)
-    {
-        notificationPanel.notificationText.text = username + " está en línea";
-        notificationPanel.panel.SetActive(true);
-        StartCoroutine(DisableNotificationAfterSeconds(3));
-    }
-
-    private IEnumerator DisableNotificationAfterSeconds(int seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        notificationPanel.panel.SetActive(false);
-        //notificationText.text = "";
     }
 }

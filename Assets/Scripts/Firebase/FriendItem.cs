@@ -13,7 +13,6 @@ public class FriendItem : MonoBehaviour
     //public TextMeshProUGUI notificationText; // Texto de notificación
 
     private string friendId;
-    private string friendUsername;
     private string currentUserId;
     private DatabaseReference databaseReference;
 
@@ -58,10 +57,17 @@ public class FriendItem : MonoBehaviour
 
     private void OnlineStatusChanged(object sender, ValueChangedEventArgs args)
     {
-        bool isOnline = (bool)args.Snapshot.Value;
-        onlineStatusImage.color = isOnline ? Color.green : Color.red;
-        GetComponentInParent<FriendListManager>().SortFriendsByOnlineStatus();
-        
+        if (gameObject != null)
+        {
+            bool isOnline = (bool)args.Snapshot.Value;
+            onlineStatusImage.color = isOnline ? Color.green : Color.red;
+            GetComponentInParent<FriendListManager>().SortFriendsByOnlineStatus();
+        }
+        else
+        {
+            Debug.LogWarning("Null FriendItem Reference");
+        }
+
     }
 
     public bool IsOnline
