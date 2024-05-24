@@ -16,7 +16,9 @@ public class LogoutButton : MonoBehaviour
     {
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         databaseReference.Child("users").Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId).Child("online").SetValueAsync(false);
-
+        databaseReference.Child("users").Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId).Child("searching").SetValueAsync(false);
+        databaseReference.Child("users").Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId).Child("match").SetValueAsync("");
+        databaseReference.Child("users").Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId).Child("accepted").SetValueAsync(false);
 
         FirebaseAuth.DefaultInstance.SignOut();
         GamePanel.SetActive(false);

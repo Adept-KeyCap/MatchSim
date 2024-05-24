@@ -15,6 +15,8 @@ public class LogIn : MonoBehaviour
         private TMP_InputField _passwordInputField;
         [SerializeField] private Auth authVar;
         public ErrorMessage _errorMessage;
+
+
         void Reset()
         {
             _loginButton = GetComponent<Button>();

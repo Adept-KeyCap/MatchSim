@@ -68,6 +68,9 @@ public class SignUpButton : MonoBehaviour
                 result.User.DisplayName, result.User.UserId);
 
             _mDatabaseRef.Child("users").Child(result.User.UserId).Child("username").SetValueAsync(_usernameInputField.text);
+            _mDatabaseRef.Child("users").Child(result.User.UserId).Child("searching").SetValueAsync(false);
+            _mDatabaseRef.Child("users").Child(result.User.UserId).Child("match").SetValueAsync("");
+            _mDatabaseRef.Child("users").Child(result.User.UserId).Child("accepted").SetValueAsync(false);
         }
     }
 }
