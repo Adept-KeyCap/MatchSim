@@ -5,6 +5,8 @@ using Firebase.Database;
 using Firebase.Extensions;
 using Firebase.Auth;
 using System;
+using System.Collections;
+using UnityEngine.Playables;
 
 public class FriendListManager : MonoBehaviour
 {
@@ -17,12 +19,17 @@ public class FriendListManager : MonoBehaviour
     private Dictionary<string, FriendItem> friendItemsDictionary = new Dictionary<string, FriendItem>();
     private OnlineState onlineState;
 
+    public NotificationStatusIdentifier notificationPanel; // Panel de notificación
+
+    private string notificationID;
+
     public void OnEnable()
     {
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         currentUserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         LoadFriendList();
     }
+
     private void LoadFriendList()
     {
         databaseReference.Child("users").Child(currentUserId).Child("friends").GetValueAsync().ContinueWithOnMainThread(task =>
@@ -54,12 +61,16 @@ public class FriendListManager : MonoBehaviour
             friendItem.SetFriendId(friendId);
             friendItems.Add(friendItem);
             friendItemsDictionary.Add(friendId, friendItem);
-            
+            notificationID = friendId;
+
             // Suscribirse a los cambios en el estado en línea del amigo
             DatabaseReference friendOnlineRef = databaseReference.Child("users").Child(friendId).Child("online");
             friendOnlineRef.ValueChanged += OnFriendOnlineStatusChanged;
+            //ShowOnlineNotification(databaseReference.Child("users").Child(friendId).Child("username").ToString());
         }
+
     }
+
     private void OnFriendOnlineStatusChanged(object sender, ValueChangedEventArgs args)
     {
         SortFriendsByOnlineStatus();
@@ -73,5 +84,19 @@ public class FriendListManager : MonoBehaviour
         {
             friendItems[i].transform.SetSiblingIndex(i);
         }
+    }
+
+    private void ShowOnlineNotification(string username)
+    {
+        notificationPanel.notificationText.text = username + " está en línea";
+        notificationPanel.panel.SetActive(true);
+        StartCoroutine(DisableNotificationAfterSeconds(3));
+    }
+
+    private IEnumerator DisableNotificationAfterSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        notificationPanel.panel.SetActive(false);
+        //notificationText.text = "";
     }
 }

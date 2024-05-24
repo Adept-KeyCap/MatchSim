@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LogInButton : MonoBehaviour
@@ -14,6 +15,7 @@ public class LogInButton : MonoBehaviour
     [SerializeField]
     private TMP_InputField _passwordInputField;
 
+    public UnityEvent onLogIn;
     void Reset()
     {
         _loginButton = GetComponent<Button>();
@@ -45,6 +47,8 @@ public class LogInButton : MonoBehaviour
             Firebase.Auth.AuthResult result = task.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 result.User.DisplayName, result.User.UserId);
+
+            onLogIn.Invoke();
         });
     }
 
