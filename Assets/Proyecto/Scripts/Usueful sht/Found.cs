@@ -12,9 +12,6 @@ public class Found : MonoBehaviour
     [SerializeField]
     private GameObject found;
 
-    [SerializeField]
-    private string scene;
-
     private string uid;
 
     public GameObject matchPanel;
