@@ -9,6 +9,7 @@ public class OnlineState : MonoBehaviour
 {
     // Start is called before the first frame update
     public string currentUserId;
+
     public void RetrieveOnlineStatus()
     {
         currentUserId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
@@ -38,14 +39,14 @@ public class OnlineState : MonoBehaviour
             DatabaseReference userRef = FirebaseDatabase.DefaultInstance.RootReference.Child("users").Child(currentUserId).Child("online");
             if (isOnline)
             {
-                Debug.Log("User is online.");
+                Debug.Log("current User is now online.");
                 userRef.SetValueAsync(true);
                 Debug.Log(userRef.ToString() + " is set to true");
 
             }
             else
             {
-                Debug.Log("User is offline.");
+                Debug.Log("Current User has gone offline.");
                 userRef.SetValueAsync(false);
             }
         }

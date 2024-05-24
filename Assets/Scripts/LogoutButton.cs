@@ -14,10 +14,10 @@ public class LogoutButton : MonoBehaviour
     //public NewManager _nManager;
     public void OnPointerClick() 
     {
-
         databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
         databaseReference.Child("users").Child(FirebaseAuth.DefaultInstance.CurrentUser.UserId).Child("online").SetValueAsync(false);
-        //_nManager.Reset();
+
+
         FirebaseAuth.DefaultInstance.SignOut();
         GamePanel.SetActive(false);
         LogInPanel.SetActive(true);

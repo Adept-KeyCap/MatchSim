@@ -12,7 +12,7 @@ public class NotificationStatusIdentifier : MonoBehaviour
     public void SetNotificationConnected(string friendName)
     {
         panel.SetActive(true);
-        notificationText.text = friendName + " just connected";
+        notificationText.text = friendName + " is online!";
         StartCoroutine(DisableNotificationAfterSeconds(2.5f));
     }
 

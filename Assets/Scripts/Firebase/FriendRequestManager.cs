@@ -51,17 +51,18 @@ public class FriendRequestManager : MonoBehaviour
     public void SendFriendRequest(string receiverId)
     {
         string requestKey = databaseReference.Child(currentUserId).Child("friendRequests").Child(receiverId).Push().Key;
-        Debug.Log("Request key: " + requestKey);
-        Debug.Log("Current user ID: " + currentUserId);
-        Debug.Log("Receiver ID: " + receiverId);
-        Debug.Log("CurrentUser " + FirebaseAuth.DefaultInstance.CurrentUser);
-        Debug.Log("Database Reference: " + databaseReference.ToString());
+        //Debug.Log("Current user ID: " + currentUserId);
+        //Debug.Log("Request key: " + requestKey);
 
+        //Debug.Log("Receiver ID: " + receiverId);
+        //Debug.Log("CurrentUser " + FirebaseAuth.DefaultInstance.CurrentUser);
         //FriendRequest request = new FriendRequest(currentUserId, receiverId, "pending");
         /*FriendRequest request = gameObject.AddComponent<FriendRequest>();
+        //Debug.Log("Database Reference: " + databaseReference.ToString());
         request.senderId = currentUserId;
         request.receiverId = receiverId;
         request.status = "pending";*/
+
         Dictionary<string, object> requestData = new Dictionary<string, object>
         {
             { "senderId", currentUserId },
@@ -69,8 +70,6 @@ public class FriendRequestManager : MonoBehaviour
             { "receiverId", receiverId },
             { "status", "pending" }
         };
-
-        //string jsonRequest = JsonUtility.ToJson(request);
 
         databaseReference.Child(receiverId).Child("friendRequests").Child(requestKey).SetValueAsync(requestData);
     }
@@ -80,7 +79,7 @@ public class FriendRequestManager : MonoBehaviour
         databaseReference.Child(currentUserId).Child("friendRequests").Child(requestKey).Child("status").SetValueAsync("accepted");
         AddFriend(senderId, currentUserId);
         AddFriend(currentUserId, senderId);
-        // Eliminar la solicitud del nodo del remitente
+
         databaseReference.Child(currentUserId).Child("friendRequests").Child(requestKey).RemoveValueAsync();
     }
 
