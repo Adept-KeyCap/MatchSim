@@ -14,8 +14,6 @@ public class BackGame : MonoBehaviour
 
     private string matchId;
 
-    public GameObject matchPanel;
-
     private void Start()
     {
         uid = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
@@ -68,7 +66,7 @@ public class BackGame : MonoBehaviour
 
             FirebaseDatabase.DefaultInstance.RootReference.Child("users").Child(matchId).Child("accepted").SetValueAsync(false);
 
-            matchPanel.SetActive(true);
+            SceneManager.LoadScene(scene);
         }
     }
 
@@ -101,7 +99,7 @@ public class BackGame : MonoBehaviour
 
             FirebaseDatabase.DefaultInstance.RootReference.Child("users").Child(matchId).Child("accepted").SetValueAsync(false);
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(scene);
         }
     }
 
