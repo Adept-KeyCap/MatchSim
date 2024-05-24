@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "156002030203",
+    "firebase_url": "https://matchsim-ada0d-default-rtdb.firebaseio.com",
+    "project_id": "matchsim-ada0d",
+    "storage_bucket": "matchsim-ada0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156002030203:android:9d7ec193abe170e5ed88de",
+        "android_client_info": {
+          "package_name": "com.jpmc.matchsim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCPD__KIuq7YZRu2-6_ieXza659I_yVn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
