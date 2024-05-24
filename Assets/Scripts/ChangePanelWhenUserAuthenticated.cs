@@ -12,11 +12,11 @@ public class ChangePanelWhenUserAuthenticated : MonoBehaviour
 {
     public GameObject LogInPanel;
     public GameObject GamePanel;
-    public GameObject panelLeaderboardPrefab;
-    public GameObject canvasTransform;
-    [SerializeField] private TextMeshProUGUI[] userData;
-    [SerializeField] private TextMeshProUGUI[] scoreData;
-    private int count = 0;
+    //public GameObject panelLeaderboardPrefab;
+    //public GameObject canvasTransform;
+    //[SerializeField] private TextMeshProUGUI[] userData;
+    //[SerializeField] private TextMeshProUGUI[] scoreData;
+    //private int count = 0;
 
     [SerializeField]
     private TMP_Text labelUsername;
@@ -37,26 +37,26 @@ public class ChangePanelWhenUserAuthenticated : MonoBehaviour
             LogInPanel.SetActive(false);
         }
     }
-    public void GetHighScore()
-    {
-        FirebaseDatabase.DefaultInstance.GetReference("users").OrderByChild("score").LimitToLast(5).GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.Log("Faulted");
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
-                foreach (var child in snapshot.Children.Reverse())
-                {
-                    userData[count].text = child.Child("username").Value.ToString() + " : ";
-                    scoreData[count].text = child.Child("score").Value.ToString();
-                    count++;
-                }
-            }
-        });
+    //public void GetHighScore()
+    //{
+    //    FirebaseDatabase.DefaultInstance.GetReference("users").OrderByChild("score").LimitToLast(5).GetValueAsync().ContinueWithOnMainThread(task =>
+    //    {
+    //        if (task.IsFaulted)
+    //        {
+    //            Debug.Log("Faulted");
+    //        }
+    //        else if (task.IsCompleted)
+    //        {
+    //            DataSnapshot snapshot = task.Result;
+    //            foreach (var child in snapshot.Children.Reverse())
+    //            {
+    //                userData[count].text = child.Child("username").Value.ToString() + " : ";
+    //                scoreData[count].text = child.Child("score").Value.ToString();
+    //                count++;
+    //            }
+    //        }
+    //    });
 
-    }
+    //}
 }
 
