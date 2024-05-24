@@ -3,13 +3,15 @@ using UnityEngine.UI;
 using Firebase.Database;
 using Firebase.Extensions;
 using Firebase.Auth;
-using System.Linq;
+using System.Collections;
 using TMPro;
 
 public class FriendItem : MonoBehaviour
 {
     public TextMeshProUGUI usernameText;
     public Image onlineStatusImage;
+    public GameObject notificationPanel; // Panel de notificación
+    public TextMeshProUGUI notificationText; // Texto de notificación
 
     private string friendId;
     private string friendUsername;
@@ -43,7 +45,7 @@ public class FriendItem : MonoBehaviour
             }
 
             string username = task.Result.Value.ToString();
-            Debug.Log("Friend username: " + username);  
+            Debug.Log("Friend username: " + username);
             usernameText.text = username;
         });
     }
@@ -58,6 +60,11 @@ public class FriendItem : MonoBehaviour
         bool isOnline = (bool)args.Snapshot.Value;
         onlineStatusImage.color = isOnline ? Color.green : Color.red;
         GetComponentInParent<FriendListManager>().SortFriendsByOnlineStatus();
+
+        if (isOnline)
+        {
+            ShowOnlineNotification();
+        }
     }
 
     public bool IsOnline
@@ -67,4 +74,19 @@ public class FriendItem : MonoBehaviour
             return onlineStatusImage.color == Color.green;
         }
     }
+
+    private void ShowOnlineNotification()
+    {
+        notificationText.text = usernameText.text + " está en línea";
+        notificationPanel.SetActive(true);
+        StartCoroutine(DisableNotificationAfterSeconds(5));
+    }
+
+    private IEnumerator DisableNotificationAfterSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        notificationPanel.SetActive(false);
+        notificationText.text = "";
+    }
 }
+
