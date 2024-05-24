@@ -3007,7 +3007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeIds: []
   searching: {fileID: 362063262}
-  found: {fileID: 1203690572}
+  found: {fileID: 1810334369}
   match: 
 --- !u!4 &362063264
 Transform:
@@ -3037,6 +3037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: 
+  matchPanel: {fileID: 1945027305}
 --- !u!114 &362063266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7283,7 +7284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1203690573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10891,7 +10892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13435214f7f423a419535e4cdd8e2bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  match: {fileID: 0}
+  match: {fileID: 362063263}
   found: {fileID: 1810334369}
   matchPanel: {fileID: 1945027305}
   userAccepted: 0
